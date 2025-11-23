@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>จัดการเหรียญ - CMCoin</title>
+<style>
+body {font-family: sans-serif;padding:
+20px; }
+table {
+        width: 100%;
+        border-collapse: collapse;
+}
+td, th {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+}
+button {
+        padding: 6px 10px;
+        border: none;
+        background: #0074ff;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+}
+</style>
+</head>
+<body>
+    
+<h2>เช็คยอด / จัดการเหรียญ</h2>
+
+<table>
+     <thead>
+        <tr>
+          <th>ผู้ใช้</th>
+          <th>เหรียญ</th>
+          <th>ลด</th>
+       </tr>
+     </thead>
+     
+     <tbody id="list"><</tbody>
+</table>
+
+<script>
+function loadUsers() {
+      <const users =
+JSON.parse(localStorage.getItem("cm_user
+s") || "[]");
+    let html = "";
+
+    users.forEach((u, i) => {
+        html +=
+        <tr>
+            <td>${u.user}</td>
+            <td id="coin"${i}">${u.coin}
+</td>
+            <td><button onclick="add($
+{i})">+</button></td>
+            <td><button
+onclick="remove(${i})">-</button></td>
+        </tr>
+        `;
+    });
+
+document.getElementById("list").innerHTM
+L = html;
+}
+
+function add(id) {
+     const users =
+JSON.parse.(localStorage.getItem("cm_user
+s") || "[]");
+     users[id].coin++;
+     localStorage.setItem("cm_users"),
+JSON.stringify(users));
+     loadUsers();
+}
+
+function remove() {
+     const users =
+JSON.parse(localStorage.getItem("cm_user
+s") || "[]");
+     if (users[id].coin > 0)
+users[id].coin--;
+     localStorage.setItem("cm_users",
+JSON.stringify(users));
+     loadUsers();
+}
+
+loadUsers();
+</script>
+
+</body>
+</html>
